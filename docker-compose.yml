@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  haproxy:
+    build: .
+    #image: yusheng/haproxy-letsencrypt-dns
+    volumes:
+      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  
+  backend:
+    image: training/webapp
